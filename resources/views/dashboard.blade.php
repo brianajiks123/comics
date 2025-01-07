@@ -12,6 +12,12 @@
                     {{ __("You're logged in!") }}
                 </div>
             </div>
+
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+
+                <button type="submit">Logout</button>
+            </form>
         </div>
     </div>
 </x-app-layout>
