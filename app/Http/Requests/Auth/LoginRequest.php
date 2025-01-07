@@ -28,8 +28,8 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'confirmed', 'min:8', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[\W_]/'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'exists:' . User::class],
+            'password' => ['required', 'min:8', 'regex:/[a-z]/', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'regex:/[\W_]/'],
         ];
     }
 
@@ -43,8 +43,8 @@ class LoginRequest extends FormRequest
         return [
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
-            'email.unique' => 'Email sudah digunakan oleh pengguna lain.',
-            'password.confirmed' => 'Konfirmasi kata sandi tidak cocok.',
+            'email.exists' => 'Akun tidak ditemukan.',
+            'password.required' => 'Kata sandi wajib diisi.',
             'password.min' => 'Kata sandi harus minimal 8 karakter.',
             'password.regex' => 'Kata sandi harus mengandung huruf kecil, huruf besar, angka, dan simbol.',
         ];
